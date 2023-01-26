@@ -8,6 +8,8 @@
 
 
 #define PORT 8080
+#define SOCKET_TYPE SOCK_STREAM
+#define DOMAIN AF_INET
 
 int main(int argc, char const* argv[]) {  
 
@@ -19,16 +21,13 @@ int main(int argc, char const* argv[]) {
 
     memset(&hints, 0, sizeof hints); // make sure struct if empty -> fills it with zeros
     hints.ai_family = AF_UNSPEC; // don't care IPv4 or IPv6
-    hints.ai_socktype = SOCK_STREAM; // TCP/IP socket
+    hints.ai_socktype = SOCKET_TYPE; // TCP/IP socket
     hints.ai_flags = AI_PASSIVE; // entended to bind
 
     if (status = getaddrinfo("www.example.net", "3490", &hints, &servinfo) != 0) {
         fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(status));
         return 2;
     }
-
-
- 
 
     printf("ai_flags: %d, ai_family: %d, ai_socktype: %d, ai_protocol: %d, ai_canonname: %s\n", 
     servinfo->ai_flags, servinfo->ai_family, servinfo->ai_socktype, servinfo->ai_protocol, servinfo->ai_canonname);
@@ -52,16 +51,42 @@ int main(int argc, char const* argv[]) {
     int server_fd, new_socket, valread; 
     struct sockaddr_in address;
     int addrlen = sizeof(address);
-    char buffer[1024] = { 0 };
-    char* hello = "Hello from server";
+    int opt = 1;
+    // char buffer[1024] = { 0 };
+    // char* hello = "Hello from server";
 
 // create a socket
 // -1 if error
-    if (server_fd = socket(PF_INET, SOCK_SEQPACKET, 0) < 0) {
+    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("socket creation failed");
         exit(EXIT_FAILURE);
     }
 
+    printf("%d\n", server_fd);
+
+ // Forcefully attaching socket to the port 8080
+    if (setsockopt(server_fd, SOL_SOCKET,
+                   SO_REUSEADDR | SO_REUSEPORT, &opt,
+                   sizeof(opt))) {
+        perror("setsockopt");
+        exit(EXIT_FAILURE);
+    }
+
+    address.sin_family = DOMAIN;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(PORT);
+
+    if (bind(server_fd, (struct sockaddr*)&address, addrlen) < 0) {
+        perror("bind failed");
+        exit(EXIT_FAILURE);
+    }
+
+    if (listen(server_fd, 3) < 0) {
+        perror("listen failed");
+        exit(EXIT_FAILURE);
+    }
+
+    new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen);
 
     return 0;
 }
