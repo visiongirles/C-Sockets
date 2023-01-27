@@ -24,8 +24,8 @@ int main(int argc, char const* argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_family = AF_LOCAL;
+    address.sin_addr.s_addr = INADDR_LOOPBACK;
     address.sin_port = htons(SERVER_PORT);
 
     if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
@@ -60,7 +60,9 @@ int main(int argc, char const* argv[]) {
     printf("new_socket: %d\n", new_socket);
 
 
-    // closing the connected socket
+    read(STDIN_FILENO, buffer, 10);
+
+    // closing the connectesocket
     close(new_socket);
     // closing the listening socket
 

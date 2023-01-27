@@ -1,0 +1,5 @@
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       User       Inode      PID/Program name    
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      1000       66600      18845/./server    
+tcp        0      0 127.0.0.1:8080          127.0.0.1:52426         ESTABLISHED 1000       66601      18845/./server      
+
+tcp        0      0 127.0.0.1:52426         127.0.0.1:8080          ESTABLISHED 1000       65123      18874/./client      

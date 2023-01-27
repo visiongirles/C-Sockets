@@ -49,6 +49,7 @@ int main(int argc, char const* argv[]) {
  
 printf("client_fd value    = %d\n", client_fd);
 
+    read(STDIN_FILENO, buffer, 10);
 
     // closing the connected socket
     close(client_fd);
