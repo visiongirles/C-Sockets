@@ -15,7 +15,7 @@ Optional:
 
     clang client.c -o build/client
 
-## Switch to another file
+## To run
 
 1.  Run the server first:
 
@@ -24,7 +24,7 @@ Optional:
 2.  Run the client using either of the options:
     **First option:** for prepared client's request run at the different terminal from where you server is running:
 
-            build/client
+                build/client
 
 **Second option:** type as url a-in any browser:
 
