@@ -58,6 +58,7 @@ int main(int argc, char const* argv[]) {
     printf("[+] CLIENT SAYS: %s", buffer);
 
     char response[] = "HTTP/1.1 200 OK\r\n\n\r<!DOCTYPE html><html>\n\r<body>\n\r<h1>Kate is here</h1><p>Typing from the server.</p></body></html>";
+
     send(new_socket, response, strlen(response), 0);
     printf("[+] SERVER: Package is sent\n");
 
