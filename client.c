@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 #define SIZE 1024
-#define PORT 8080
+#define SERVER_PORT 8080
 #define SERVER_ADDRESS "127.0.0.1"
 
 int main(int argc, char const* argv[]) {  
@@ -25,7 +25,7 @@ int main(int argc, char const* argv[]) {
     }
 
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(PORT);
+    serv_addr.sin_port = htons(SERVER_PORT);
     serv_addr.sin_addr.s_addr = INADDR_ANY;
 
     if (inet_pton(AF_INET, SERVER_ADDRESS, &serv_addr.sin_addr) <= 0) {

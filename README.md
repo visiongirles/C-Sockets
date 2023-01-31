@@ -9,27 +9,37 @@ Here is a project to reproduce **LiveServer** extension for Visual Studio Code -
 
 ## To configure
 
+```bash
     clang server.c -o build/server
+```
 
 Optional:
 
+```bash
     clang client.c -o build/client
+```
 
 ## To run
 
 1.  Run the server first:
 
+```bash
     build/server
+```
 
 2.  Run the client using either of the options:
 
 **First option:** for prepared client's request run at the different terminal from where you server is running:
 
+```bash
     build/client
+```
 
 **Second option:** type as url a-in any browser:
 
-    https://localhost:8080
+```bash
+    http://localhost:8080
+```
 
 ## Features
 
