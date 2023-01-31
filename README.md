@@ -7,7 +7,7 @@ Here is a project to reproduce **LiveServer** extension for Visual Studio Code -
 - server.c - a main file
 - client.c - an _optional_ file, use if you need to see preconfigured connection in terminal
 
-## To configure:
+## To configure
 
     clang server.c -o build/server
 
@@ -18,7 +18,6 @@ Optional:
 ## To run
 
 1.  Run the server first:
-
     build/server
 
 2.  Run the client using either of the options:
@@ -31,7 +30,7 @@ Optional:
 
     https://localhost:8080
 
-## Features:
+## Features
 
 - Has a client.c to test prepared client's response
 - Can be run at browser at https://localhost:8080
