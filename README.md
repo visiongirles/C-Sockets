@@ -18,6 +18,7 @@ Optional:
 ## To run
 
 1.  Run the server first:
+
     build/server
 
 2.  Run the client using either of the options:
