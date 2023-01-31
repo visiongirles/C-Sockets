@@ -19,16 +19,17 @@ Optional:
 
 1.  Run the server first:
 
-        build/server
+    build/server
 
 2.  Run the client using either of the options:
-    **First option:** for prepared client's request run at the different terminal from where you server is running:
 
-                build/client
+**First option:** for prepared client's request run at the different terminal from where you server is running:
+
+    build/client
 
 **Second option:** type as url a-in any browser:
 
-     https://localhost:8080
+    https://localhost:8080
 
 ## Features:
 
